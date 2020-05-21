@@ -22,7 +22,7 @@ copyright = '2020, Amit Sharet'
 author = 'Amit Sharet'
 
 # The full version, including alpha/beta/rc tags
-release = '1'
+release = '1.0'
 
 
 # -- General configuration ---------------------------------------------------
@@ -36,6 +36,11 @@ extensions = [
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
 
+#####MARKSDOWN PARSERS
+
+source_parsers = {
+   '.md': 'recommonmark.parser.CommonMarkParser',
+}
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
 # This pattern also affects html_static_path and html_extra_path.

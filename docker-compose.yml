@@ -1,0 +1,25 @@
+version: '3.3'
+
+services:
+
+  data_base:
+    image: mongo
+    volumes:
+      - brain_storm-storage:/src/usr/app
+    networks:
+      - brain_storm-network
+    ports:
+      - '27017:27017'
+
+  message_queue:
+    image: rabbitmq
+    networks:
+      - brain_storm-network
+    ports:
+      - '5672:5672'
+
+networks:
+  brain_storm-network:
+
+volumes:
+  brain_storm-storage:
