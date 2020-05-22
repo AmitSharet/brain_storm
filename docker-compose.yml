@@ -2,10 +2,17 @@ version: '3.3'
 
 services:
 
+  base:
+    networks:
+      - brain_storm-network
+    volumes:
+      - brain_storm-storage:/usr/src/brain_storm
+    build: "./brain_storm"
+
   data_base:
     image: mongo
     volumes:
-      - brain_storm-storage:/src/usr/app
+      - brain_storm-storage:/usr/src/brain_storm
     networks:
       - brain_storm-network
     ports:
@@ -17,6 +24,39 @@ services:
       - brain_storm-network
     ports:
       - '5672:5672'
+
+  api:
+    build: "./brain_storm/api"
+    volumes:
+      - brain_storm-storage:/usr/src/brain_storm
+    networks:
+      - brain_storm-network
+    ports:
+      - 5000:5000
+    depends_on:
+      - data_base
+      - base
+    restart: on-failure
+
+  server:
+    build: "./brain_storm/server"
+    volumes:
+      - brain_storm-storage:/usr/src/brain_storm
+    networks:
+      - brain_storm-network
+    ports:
+      - 8000:8000
+    depends_on:
+      - message_queue
+      - base
+    restart: on-failure
+
+
+
+
+
+
+
 
 networks:
   brain_storm-network:
