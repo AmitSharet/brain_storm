@@ -1,84 +1,42 @@
-brain_storm
-An example package. See full documentation.
+# Welcome to BrainStorm!
 
-Installation
-Clone the repository and enter it:
+Hello, I'm able to read minds from sample files, upload them to a server, I can have various of parsers to parsethe thoughts and publish them later to a nice GUI.
 
-$ git clone git@github.com:dan-gittik/foobar.git
-...
-$ cd foobar/
-Run the installation script and activate the virtual environment:
+# Getting started
 
-$ ./scripts/install.sh
-...
-$ source .env/bin/activate
-[foobar] $ # you're good to go!
-To check that everything is working as expected, run the tests:
+## Prequisites:
 
-$ pytest tests/
-...
-Usage
-The foobar packages provides the following classes:
+* python 3.8
+* Git
+* Virtualenv
+* Docker
+* docker-compose 
 
-Foo
+## Installation
 
-This class encapsulates the concept of foo, and returns "foo" when run.
+Clone and enter my repository:
 
-In addition, it provides the inc method to increment integers, and the add method to sum them.
-
->>> from foobar import Foo
->>> foo = Foo()
->>> foo.run()
-'foo'
->>> foo.inc(1)
-2
->>> foo.add(1, 2)
-3
-Bar
-
-This class encapsulates the concept of bar; it's very similar to Foo, except it returns "bar" when run.
-
->>> from foobar import Bar
->>> bar = Bar()
->>> bar.run()
-'bar'
-The foobar package also provides a command-line interface:
-
-$ python -m foobar
-foobar, version 0.1.0
-All commands accept the -q or --quiet flag to suppress output, and the -t or --traceback flag to show the full traceback when an exception is raised (by default, only the error message is printed, and the program exits with a non-zero code).
-
-The CLI provides the foo command, with the run, add and inc subcommands:
-
-$ python -m foobar foo run
-foo
-$ python -m foobar foo inc 1
-2
-$ python -m foobar foo add 1 2
-3
-The CLI further provides the bar command, with the run and error subcommands.
-
-Curiously enough, bar's run subcommand accepts the -o or --output option to write its output to a file rather than the standard output, and the -u or --uppercase option to do so in uppercase letters.
-
-$ python -m foobar bar run
-bar
-$ python -m foobar bar run -u
-BAR
-$ python -m foobar bar run -o output.txt
-$ cat output.txt
-BAR
-Do note that each command's options should be passed to that command, so for example the -q and -t options should be passed to foobar, not foo or bar.
-
-$ python -m foobar bar run -q # this doesn't work
-ERROR: no such option: -q
-$ python -m foobar -q bar run # this does work
-To showcase these options, consider bar's error subcommand, which raises an exception:
-
-$ python -m foobar bar error
-ERROR: something went terribly wrong :[
-$ python -m foobar -q bar error # suppress output
-$ python -m foobar -t bar error # show full traceback
-ERROR: something went terribly wrong :[
-Traceback (most recent call last):
+    $ git clone git@github.com:AmitSharet/brain_storm.git
     ...
-RuntimeError: something went terrible wrong :[
+    $ cd brain_storm
+
+Run installation script 
+
+    $ ./script/install.sh
+    ...
+    $ source ./env/bin/activate
+
+ Check everything is working as expected:
+
+    $ pytest tests/
+    ...
+
+## Quick start
+
+Simply run:
+
+    `docker-compose up -d
+
+## Full documentation
+
+You can find full documentation of my project here (when it's ready):
