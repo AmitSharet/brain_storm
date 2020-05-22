@@ -1,6 +1,6 @@
 # Welcome to BrainStorm!
 
-Hello, I'm able to read minds from sample files, upload them to a server, I can have various of parsers to parsethe thoughts and publish them later to a nice GUI.
+Hello, I'm able to read minds from sample files, upload them to a server, I can have various of parsers to parse the thoughts and publish them later to a nice GUI.
 
 # Getting started
 
