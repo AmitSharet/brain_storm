@@ -21,12 +21,18 @@ services:
     ports:
       - '27017:27017'
 
+
   message_queue:
     image: rabbitmq
     networks:
       - brain_storm-network
     ports:
       - '5672:5672'
+    healthcheck:
+      test: ["CMD", "curl", "-f","http://0.0.0.0:5672"]
+      interval: 30s
+      timeout: 10s
+      retries: 10
 
   api:
     build:
@@ -57,6 +63,68 @@ services:
       - message_queue
       - base
     restart: on-failure
+
+  parser_color:
+    build:
+      dockerfile: ./brain_storm/parsers/Dockerfile
+      context: .
+    volumes:
+      - my-storage:/usr/src/brain_storm
+    networks:
+      - brain_storm-network
+    depends_on:
+      - message_queue
+      - base
+    enviroment:
+      - PARSER: color_image
+    restart: on-failure
+
+  parser_depth:
+    build:
+      dockerfile: ./brain_storm/parsers/Dockerfile
+      context: .
+    volumes:
+      - my-storage:/usr/src/brain_storm
+    networks:
+      - brain_storm-network
+    depends_on:
+      - message_queue
+      - base
+    enviroment:
+      - PARSER: depth_image
+    restart: on-failure
+
+  parser_pose:
+    build:
+      dockerfile: ./brain_storm/parsers/Dockerfile
+      context: .
+    volumes:
+      - my-storage:/usr/src/brain_storm
+    networks:
+      - brain_storm-network
+    depends_on:
+      - message_queue
+      - base
+    enviroment:
+      - PARSER: pose
+    restart: on-failure
+
+
+  parser_feelings:
+    build:
+      dockerfile: ./brain_storm/parsers/Dockerfile
+      context: .
+    volumes:
+      - my-storage:/usr/src/brain_storm
+    networks:
+      - brain_storm-network
+    depends_on:
+      - message_queue
+      - base
+    enviroment:
+      - PARSER: feelings
+    restart: on-failure
+
 
   saver:
     build:
