@@ -2,7 +2,7 @@ from .reader import Reader
 import requests
 
 def upload_sample(path, host='127.0.0.1', port=8000):
-    """ BLAH BLAH BLAH"""
+    """ upload_sample simply reads the sample from the path and uploads to server  """
     file_reader = Reader(path) #TODO : add exceptions
 
     user = file_reader.get_user_binary()

@@ -4,8 +4,8 @@ from .brain_storm_pb2 import User, Snapshot
 UINT_LEN_IN_BYTES=4
 class Reader():
     """
-BLAH
- protobuf .mind and .mind.gz filess
+Class Reader - reads different types of files .mind and .mind.gz filess
+Uses protobuf protocol
     """
 
     def __init__(self, file_path):

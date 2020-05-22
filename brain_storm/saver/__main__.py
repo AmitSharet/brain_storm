@@ -29,7 +29,7 @@ TBD
 @click.argument('mq')
 def run_service(database, mq):
     """
-    Blah database tbd
+    Receives urls (+scheme) to a database and a message queue and runs the saver service, which listens to the queue and saves message to the database
     """
     database=furl(database)
     database_host= str(database.host)
@@ -50,7 +50,8 @@ def run_service(database, mq):
 
     channel.queue_declare('saver')
 
-    channel.queue_bind( exchange='brain_storm', queue='saver', routing_key='save.*')
+    channel.queue_bind(
+        exchange='brain_storm', queue='saver', routing_key='save.*')
 
     def callback(ch, method, properties, body):
         field: str = method.routing_key.split('.').pop()
@@ -59,7 +60,8 @@ def run_service(database, mq):
         print(field)
         saver.save( data = data, field=field)
 
-    channel.basic_consume( queue='saver', on_message_callback=callback, auto_ack=True)
+    channel.basic_consume(
+    queue='saver', on_message_callback=callback, auto_ack=True)
 
     print('Saver started listening to queue')
 

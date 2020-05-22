@@ -6,13 +6,16 @@ services:
     networks:
       - brain_storm-network
     volumes:
-      - brain_storm-storage:/usr/src/brain_storm
-    build: "./brain_storm"
+      - my-storage:/usr/src/brain_storm
+    build:
+      dockerfile: ./brain_storm/Dockerfile
+      context: .
+    image: brain_storm-base:latest
 
   data_base:
     image: mongo
     volumes:
-      - brain_storm-storage:/usr/src/brain_storm
+      - my-storage:/usr/src/brain_storm
     networks:
       - brain_storm-network
     ports:
@@ -26,9 +29,11 @@ services:
       - '5672:5672'
 
   api:
-    build: "./brain_storm/api"
+    build:
+      dockerfile: ./brain_storm/api/Dockerfile
+      context: .
     volumes:
-      - brain_storm-storage:/usr/src/brain_storm
+      - my-storage:/usr/src/brain_storm
     networks:
       - brain_storm-network
     ports:
@@ -39,9 +44,11 @@ services:
     restart: on-failure
 
   server:
-    build: "./brain_storm/server"
+    build:
+      dockerfile: ./brain_storm/server/Dockerfile
+      context: .
     volumes:
-      - brain_storm-storage:/usr/src/brain_storm
+      - my-storage:/usr/src/brain_storm
     networks:
       - brain_storm-network
     ports:
@@ -51,15 +58,22 @@ services:
       - base
     restart: on-failure
 
-
-
-
-
-
-
+  saver:
+    build:
+      dockerfile: ./brain_storm/saver/Dockerfile
+      context: .
+    volumes:
+      - my-storage:/usr/src/brain_storm
+    networks:
+      - brain_storm-network
+    depends_on:
+      - message_queue
+      - data_base
+      - base
+    restart: on-failure
 
 networks:
   brain_storm-network:
 
 volumes:
-  brain_storm-storage:
+  my-storage:

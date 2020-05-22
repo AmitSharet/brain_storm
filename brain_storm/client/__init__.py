@@ -1,5 +1,5 @@
 """
-CLIENT DESCRIPTION
+Client modul which reads samples and sends the server
 """
 
 
