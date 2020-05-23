@@ -31,14 +31,14 @@ Uses protobuf protocol
     def get_user_binary(self):
         return self.user
 
-
+    @staticmethod
     def read_protobuf_user(binary_user): #TODO : Should be static?
         try:
             User.FromString(binary_user)
         except:
             raise
 
-
+    @staticmethod
     def read_protobuf_snapshot(binary_snapshot):
         try:
             Snapshot.FromString(binary_snapshot)

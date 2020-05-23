@@ -18,8 +18,8 @@ def parse_data(binary):
     return user, snapshot
 
 
-def simple_publish(user, snapshot, mq_host, mq_port): #TODO : better name
-    """ BLAH BLAH BLAH """
+def _simple_publish(user, snapshot, mq_host, mq_port): #TODO : do something with the port in the MQ parameters
+    """  Publishesto the parsers and saver the user and snapshot data from the input """
 
     connection = pika.BlockingConnection(
         pika.ConnectionParameters( host=mq_host ) )
@@ -38,8 +38,9 @@ def simple_publish(user, snapshot, mq_host, mq_port): #TODO : better name
     connection.close()
 
 
-def run_server(host='localhost', port=8000, publish=simple_publish, *, mq_address='rabbitmq://localhost:5672'):
-    """BLAH BLAH BLAH TBD"""
+def run_server(host='localhost', port=8000, publish=_simple_publish, *, mq_address='rabbitmq://localhost:5672'):
+    """Runs the server on the host and port in the input, handles requests from clients and publishes through the
+    publisher in the input"""
     server = Flask(__name__)
     mq_url = furl( mq_address )
 

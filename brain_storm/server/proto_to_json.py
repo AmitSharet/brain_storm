@@ -6,6 +6,7 @@ import logging
 
 
 class ProtobufToJson:
+    """A class which makes json of the protobuf input data """
     def __init__(self, save_path):
         self.save_path = save_path
 
@@ -13,6 +14,8 @@ class ProtobufToJson:
         return MessageToDict(user)
 
     def _snap_to_dict(self, snap: Snapshot, user: User) -> dict:
+        """Turns the snapshot to a dict, saves the image color and depth data in files and saves the path in the json
+        instead, if you want to get to the data afterwards just open the data in the path in read mode."""
         snap_dict = MessageToDict(snap)
         user_data = str(user.user_id) + "-" + user.username
         snap_path = self.save_path + "/" + user_data + "/" + str(snap.datetime) + "/"
@@ -37,10 +40,9 @@ class ProtobufToJson:
 
         return snap_dict
 
-    # TODO write this documentation
-    ''' BLAH BLAH BLAH '''
 
     def user_snap_to_json(self, user: User, snap: Snapshot) -> str:
+        """Unites the protobuf user and snapshot to a json"""
         snap_dir_path = '/home/user/Snapshot'  # TODO make this not hard coded
         os.makedirs(os.path.dirname(snap_dir_path), exist_ok=True)
         user_dict, snap_dict = self._user_to_dict(user=user), self._snap_to_dict(snap=snap, user=user)
