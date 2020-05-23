@@ -76,7 +76,7 @@ services:
       - message_queue
       - data_base
       - base
-    restart: on-failure
+    restart: always
 
 networks:
   brain_storm-network:

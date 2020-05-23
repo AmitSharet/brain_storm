@@ -5,7 +5,8 @@ FROM brain_storm-base:latest
 
 #EXPOSE 5000
 
-CMD python -m brain_storm.api run-server -h 0.0.0.0  -d mongodb://0.0.0.0:27017
+CMD   cd /usr/src/brain_storm   \
+ && python -m api run-server -h 0.0.0.0  -d mongodb://0.0.0.0:27017
 
 
 #WORKDIR /usr/src/brain_storm
