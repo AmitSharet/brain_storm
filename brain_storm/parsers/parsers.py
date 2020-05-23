@@ -27,7 +27,7 @@ def run_parser_from_mq(mq_host, parser_name, parser):
 
 
 def get_parser_by_name(parser_name): #TODO : Add edge cases
-    for file in os.listdir('/home/user/brain_storm/parsers/parser_fields'):
+    for file in os.listdir('./brain_storm/parsers/parser_fields'): ##  TODO : fix this
         print(parser_name)
         print(file[:-3])
         if file.startswith("_") or not file.endswith(".py"):
