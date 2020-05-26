@@ -1,5 +1,5 @@
 import click
-from . import MongoSaver
+from ..databases import GeneralSaver
 from furl import furl
 import pika
 import json
@@ -18,7 +18,7 @@ def save(field, result_path, database):
     """
 TBD
     """
-    saver = MongoSaver(database)
+    saver = GeneralSaver(database)
     with open(result_path, 'r') as f:
         data = f.read()
         saver.save(data, field)
@@ -31,10 +31,10 @@ def run_service(database, mq):
     """
     Receives urls (+scheme) to a database and a message queue and runs the saver service, which listens to the queue and saves message to the database
     """
-    database=furl(database)
-    database_host= str(database.host)
-    database_port = int(database.port)
-    saver = MongoSaver(database_host, database_port)
+    #database=furl(database)
+    #database_host= str(database.host)
+    #database_port = int(database.port)
+    saver = GeneralSaver(database)
     print ("this is mq"+ mq)
     mq = furl(mq)
     mq_host= str(mq.host)

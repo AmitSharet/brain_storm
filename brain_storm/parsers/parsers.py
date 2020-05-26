@@ -15,7 +15,6 @@ def run_parser_from_mq(mq_host, parser_name, parser):
 
     def callback(ch, method, properties, body):
         message = json.loads(body)
-        #print("message   :  "+ message)
         parsed_result = (parser(message))
         print(parsed_result) #TODO : remove before submission
         channel.basic_publish( exchange='brain_storm', routing_key=f'save.{parser_name}', body=parsed_result) #TODO :also change the key here
@@ -27,7 +26,8 @@ def run_parser_from_mq(mq_host, parser_name, parser):
 
 
 def get_parser_by_name(parser_name): #TODO : Add edge cases
-    for file in os.listdir('./brain_storm/parsers/parser_fields'): ##  TODO : fix this
+    dir_path = os.path.dirname(os.path.realpath(__file__))
+    for file in os.listdir(f'{dir_path}/parser_fields'): ##  TODO : fix this
         print(parser_name)
         print(file[:-3])
         if file.startswith("_") or not file.endswith(".py"):

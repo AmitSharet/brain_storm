@@ -18,7 +18,7 @@ Hello, I'm able to read minds from sample files, upload them to a server, I can 
 
 Clone and enter my repository:
 
-    $ git clone git@github.com:AmitSharet/brain_storm.git
+    $ git clone https://github.com/AmitSharet/brain_storm.git
     ...
     $ cd brain_storm
 
