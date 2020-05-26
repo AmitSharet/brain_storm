@@ -26,8 +26,10 @@ def _simple_publish(user, snapshot, mq_host, mq_port): #TODO : do something with
     channel = connection.channel()
     channel.exchange_declare(exchange='brain_storm', exchange_type='topic')
 
-    os.makedirs(os.path.dirname('/home/user/Snapshot'), exist_ok=True) #TODO change to not hardcoded path
-    proto_to_json = ProtobufToJson('/home/user/Snapshot')
+    current_directory = os.path.abspath('..')
+    snapshots_directory_path = f'{current_directory}/Snapshots'
+    os.makedirs( snapshots_directory_path, exist_ok = True)
+    proto_to_json = ProtobufToJson(snapshots_directory_path)
 
     body_message = proto_to_json.user_snap_to_json(user, snapshot)
 
@@ -57,4 +59,5 @@ def run_server(host='localhost', port=8000, publish=_simple_publish, *, mq_addre
         publish( user,snapshot ,publisher_host, publisher_port )
         return make_response( 'Ok', 200 )
 
+   # if __name__==__main__:
     server.run( host=host, port=port, threaded=True )

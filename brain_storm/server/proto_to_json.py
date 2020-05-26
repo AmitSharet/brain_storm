@@ -43,8 +43,10 @@ class ProtobufToJson:
 
     def user_snap_to_json(self, user: User, snap: Snapshot) -> str:
         """Unites the protobuf user and snapshot to a json"""
-        snap_dir_path = '/home/user/Snapshot'  # TODO make this not hard coded
-        os.makedirs(os.path.dirname(snap_dir_path), exist_ok=True)
+      #  current_directory = os.getcwd()
+       # final_directory = os.path.join(current_directory, '/Snapshot')
+        ##snap_dir_path = '/home/user/Snapshot'  # TODO make this not hard coded
+        #os.makedirs(os.path.dirname(final_directory), exist_ok=True)
         user_dict, snap_dict = self._user_to_dict(user=user), self._snap_to_dict(snap=snap, user=user)
 
         return json.dumps({'user': user_dict, 'snap': snap_dict})
