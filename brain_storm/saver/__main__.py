@@ -1,5 +1,5 @@
 import click
-from ..databases import GeneralSaver
+from ..databases import GeneralDB
 from furl import furl
 import pika
 import json
@@ -18,7 +18,7 @@ def save(field, result_path, database):
     """
 TBD
     """
-    saver = GeneralSaver(database)
+    saver = GeneralDB(database)
     with open(result_path, 'r') as f:
         data = f.read()
         saver.save(data, field)
@@ -34,7 +34,7 @@ def run_service(database, mq):
     #database=furl(database)
     #database_host= str(database.host)
     #database_port = int(database.port)
-    saver = GeneralSaver(database)
+    saver = GeneralDB(database)
     print ("this is mq"+ mq)
     mq = furl(mq)
     mq_host= str(mq.host)

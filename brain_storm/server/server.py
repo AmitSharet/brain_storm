@@ -19,7 +19,7 @@ def parse_data(binary):
 
 
 def _simple_publish(user, snapshot, mq_host, mq_port): #TODO : do something with the port in the MQ parameters
-    """  Publishesto the parsers and saver the user and snapshot data from the input """
+    """  Publishes to the parsers and saver the user and snapshot data from the input """
 
     connection = pika.BlockingConnection(
         pika.ConnectionParameters( host=mq_host ) )
@@ -36,7 +36,7 @@ def _simple_publish(user, snapshot, mq_host, mq_port): #TODO : do something with
     routing_key = f'parse.{".".join([field[0].name for field in snapshot.ListFields() if field[0].name != "datetime"])}'
     logging.warning( "1.1" )#TODO remove logging
     channel.basic_publish( exchange='brain_storm', routing_key=routing_key, body=body_message)
-    channel.basic_publish(exchange='brain_storm', routing_key='save.user', body=body_message)
+    channel.basic_publish(exchange='brain_storm', routing_key='save.user', body=body_message) ##TODO : change what I send fore user if I have time
     connection.close()
 
 

@@ -1,0 +1,17 @@
+/build
+
+.env
+
+.cache
+
+
+npm-debug-log
+
+sample.mind
+
+sample.mind.gz
+
+.git
+
+
+

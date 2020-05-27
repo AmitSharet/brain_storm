@@ -24,7 +24,7 @@ Clone and enter my repository:
 
 Run installation script 
 
-    $ ./script/install.sh
+    $ ./scripts/install.sh
     ...
     $ source ./env/bin/activate
 

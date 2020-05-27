@@ -14,4 +14,4 @@ def depth_image(data):
     plt.imshow(heat_array, cmap='hot', interpolation='nearest')
     plt.savefig(path_to_img)
 
-    return json.dumps({'userId': data['user']['userId'], 'datetime': data['snap']['datetime'], 'depthPath': path_to_img})
+    return json.dumps({'userId': data['user']['userId'], 'datetime': data['snap']['datetime'], 'depthPath': path_to_img, 'height': h, 'weight': w})

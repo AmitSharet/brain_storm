@@ -12,13 +12,13 @@ def main():
 @main.command('parse')
 @click.argument('field')
 @click.argument('data_path')
-def parse(field, data_path):
+def parse(field: str, data_path: str):
     """
    BLAH BLAH
     """
     with open(data_path, 'r') as file_reader:
-        parser = get_parser_by_name(field)
-        parsed_result = parser( file_reader.read())
+        data = file_reader.read()
+        parsed_result = run_parser(field, data)
         print(parsed_result)
 
 @main.command('run-parser')

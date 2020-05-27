@@ -14,4 +14,6 @@ def color_image(data):
     img_from_bytes = PIL.Image.frombytes('RGB', (w, h), img_bytes)
     img_from_bytes.save(path_to_img)
     #logging.warning(data)
-    return json.dumps({'userId': data['user']['userId'],  'datetime': data['snap']['datetime'], 'colorPath': path_to_img})
+    #return json.dumps({'userId': data['user']['userId'],  'datetime': data['snap']['datetime'], 'colorPath': path_to_img})
+    return json.dumps({'userId': data['user']['userId'],  'datetime': data['snap']['datetime'], 'colorPath': path_to_img, 'height': h, 'width': w})
+
