@@ -4,7 +4,7 @@ from brain_storm.client import upload_sample, Reader
 _DATA = Path('tests/data/before_parseing.json').absolute()
 
 
-def test_bad_server_url():
+def test_bad_server_u():
     with pytest.raises(ConnectionError):
         bad_server_url='vbdvffsdcd'
         upload_sample(host=bad_server_url, port=8000, path=_DATA)

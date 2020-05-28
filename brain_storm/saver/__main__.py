@@ -1,8 +1,7 @@
 import click
-from ..databases import GeneralDB
+from . import Saver
 from furl import furl
-import pika
-import json
+
 
 
 @click.group()
@@ -11,60 +10,31 @@ def main():
 
 
 @main.command('save')
-@click.option('-d', '--database', default='mongodb://localhost:27017', help="url of database scheme BLAH BLAH")
+@click.option('-d', '--database', default='mongodb://localhost:27017', help="url of the database ")
 @click.argument('field')
-@click.argument('result_path')
-def save(field, result_path, database):
+@click.argument('path')
+def save(field, path, database):
     """
-TBD
+save - Saves data
     """
-    saver = GeneralDB(database)
-    with open(result_path, 'r') as f:
+    saver = Saver(database)
+    with open(path, 'r') as f:
         data = f.read()
-        saver.save(data, field)
+        saver.db.save(data, field)
 
 
 @main.command('run-saver')
 @click.argument('database')
 @click.argument('mq')
-def run_service(database, mq):
+def run_service(database, mq): ##TODO: VERY IMPORTANT - CHANGE TO BE LIKE THE SPEC!!!!
     """
     Receives urls (+scheme) to a database and a message queue and runs the saver service,
      which listens to the queue and saves message to the database
     """
-
-    saver = GeneralDB(database)
-    print ("this is mq"+ mq)
+    saver = Saver(database)
     mq = furl(mq)
-    mq_host= str(mq.host)
-
-    print("mq- host : "+ mq_host)
-
-    connection = pika.BlockingConnection(
-        pika.ConnectionParameters(mq_host))
-
-    channel = connection.channel()
-
-    channel.exchange_declare(exchange='brain_storm', exchange_type='topic')
-
-    channel.queue_declare('saver')
-
-    channel.queue_bind(
-        exchange='brain_storm', queue='saver', routing_key='save.*')
-
-    def callback(ch, method, properties, body):
-        field: str = method.routing_key.split('.').pop()
-        data = json.loads(body)
-        print(data)
-        print(field)
-        saver.save(data=data, field=field)
-
-    channel.basic_consume(
-    queue='saver', on_message_callback=callback, auto_ack=True)
-
-    print('Saver started listening to queue')
-
-    channel.start_consuming()
+    mq_host = str(mq.host)
+    saver.run_savers(mq_host)
 
 
 if __name__ == '__main__':

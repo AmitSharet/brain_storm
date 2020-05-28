@@ -1,5 +1,5 @@
 """
-PARSERS BLAH BLAH DESCRIPtion
+The Parsers module, includes the parsers of the thoughts
 """
 
 
