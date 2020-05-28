@@ -4,7 +4,6 @@ import inspect
 import importlib
 from furl import *
 
-databases={}
 
 class GeneralDB:
     """General Saver is a layer above all savers which gives ageneral api for any db we want to add
@@ -15,8 +14,10 @@ class GeneralDB:
         self.db_url = furl(db_url)
         url_scheme=self.db_url.scheme
         db_class = self.get_db_by_name(url_scheme)
-        self.db=db_class(self.db_url.host, self.db_url.port)
-
+        try:
+            self.db=db_class(self.db_url.host, self.db_url.port)
+        except ConnectionError:
+            raise ConnectionError(f'Could not connect to database server {url_scheme}')
 
 
     def get_db_by_name(self, db_name): #TODO : ADD edge cases
@@ -27,9 +28,8 @@ class GeneralDB:
             print(db_name)
             print(file[:-4])
             if file.startswith("_") or not file.endswith(".py"):
-                continue  # next loop
+                continue
             if file[:-4] == db_name and file[-4] == '_':
-                #scheme=self.db_url.scheme+'_'
                 package = f'{root.parent.name}.{root.name}'
                 module = importlib.import_module(f'.{pathlib.Path(file).stem}',package=package).__dict__
                 for item in module.values():
