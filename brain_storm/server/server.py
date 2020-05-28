@@ -3,6 +3,7 @@ from .brain_storm_pb2 import User, Snapshot
 from .mq_publsher import _simple_publish
 from furl import furl
 
+
 UINT_32_LEN = 4
 
 

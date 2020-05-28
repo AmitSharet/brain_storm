@@ -26,11 +26,11 @@ Parsing data from input
 @main.command('run-parser')
 @click.argument('field')
 @click.argument('message_queue_url')
-def run_parsers(field, message_queue_url):#TODO : change this name!!!!!
+def run_parsers(field, message_queue_url):
     """,
 Running parsers in the input and sending results on the message queue
     """
-    mq = furl.furl(message_queue_url)##TODO: Add try exception
+    mq = furl.furl(message_queue_url)
     mq_host = mq.host
     parser = get_parser_by_name(field)
     run_parser_from_mq(mq_host, field, parser)

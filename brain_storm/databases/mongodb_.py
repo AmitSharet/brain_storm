@@ -10,8 +10,7 @@ Database of the mongodb
     def __init__(self, host: str, port: int):
         self.host = host
         self.port = port
-        print(self.host)
-        print(self.port)
+
         try:
             self.client = MongoClient(host, int(port), serverSelectionTimeoutMS=120000)
         except errors.ServerSelectionTimeoutError:
@@ -50,7 +49,7 @@ Database of the mongodb
         user = self.db.users.find_one({'userId': str(user_id)}, {'_id': 0})
         if not user:
             return 'User Not Found', 404
-        return json.dumps(user, default=json_util.default), 200 ## TODO : check the 200 works
+        return json.dumps(user, default=json_util.default), 200
 
     def get_snapshots(self, user_id):
         if not self.db.users.find_one({'userId': str(user_id)}):
@@ -75,7 +74,7 @@ Database of the mongodb
             return 'Snapshot Not Found For This User', 404
         if result_name not in snapshot:
             return 'Result Is not Available', 404
-        return json.dumps(snapshot[result_name], default=json_util.default)  ##TODO: ADD" , 200"
+        return json.dumps(snapshot[result_name], default=json_util.default), 200
 
 
 

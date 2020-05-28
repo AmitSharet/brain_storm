@@ -14,7 +14,7 @@ Uses protobuf protocol
         self.file = self.open_file()
         self.user = self.read_user()
 
-    def open_file(self):#TODO : close file
+    def open_file(self):
         if self.file_path.endswith('gz'):
             return gzip.open(self.file_path, 'rb')
         elif self.file_path.endswith('mind'):

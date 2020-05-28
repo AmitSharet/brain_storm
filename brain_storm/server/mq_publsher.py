@@ -20,7 +20,7 @@ def _simple_publish(user, snapshot, mq_host, mq_port):
     body_message, user_message = proto_to_json.user_snap_to_json(user, snapshot)
 
     routing_key = f'parse.{".".join([field[0].name for field in snapshot.ListFields() if field[0].name != "datetime"])}'
-    channel.basic_publish( exchange='brain_storm', routing_key=routing_key, body=body_message)
+    channel.basic_publish(exchange='brain_storm', routing_key=routing_key, body=body_message)
     channel.basic_publish(exchange='brain_storm', routing_key='save.user', body=user_message)
     connection.close()
 

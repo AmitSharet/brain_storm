@@ -20,7 +20,7 @@ class GeneralDB:
             raise ConnectionError(f'Could not connect to database server {url_scheme}')
 
 
-    def get_db_by_name(self, db_name): #TODO : ADD edge cases
+    def get_db_by_name(self, db_name):
         file_path = os.path.dirname(os.path.realpath(__file__))
         root= pathlib.Path(file_path)
         for file in os.listdir(file_path):

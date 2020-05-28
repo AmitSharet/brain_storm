@@ -23,8 +23,6 @@ class Saver:
         def callback(ch, method, properties, body):
             field: str = method.routing_key.split('.').pop()
             data = json.loads(body)
-            print(data)#TODO: REMOVE
-            print(field)#TODO: REMOVE
             self.db.save(data=data, field=field)
 
         channel.basic_consume(
