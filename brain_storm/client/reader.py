@@ -32,7 +32,7 @@ Uses protobuf protocol
         return self.user
 
     @staticmethod
-    def read_protobuf_user(binary_user): #TODO : Should be static?
+    def read_protobuf_user(binary_user):
         try:
             User.FromString(binary_user)
         except:

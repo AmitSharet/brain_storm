@@ -4,8 +4,6 @@ import os
 import pika
 
 
-
-
 def _simple_publish(user, snapshot, mq_host, mq_port): #TODO : do something with the port in the MQ parameters
     """  Publishes to the parsers and saver the user and snapshot data from the input """
 

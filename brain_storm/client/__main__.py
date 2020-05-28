@@ -21,6 +21,5 @@ def upload(host, port, path):
         print(f'Got client error : {error}')
 
 
-
 if __name__ == '__main__':
     main()

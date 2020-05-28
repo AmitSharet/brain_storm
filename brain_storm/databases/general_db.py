@@ -6,8 +6,8 @@ from furl import *
 
 
 class GeneralDB:
-    """General Saver is a layer above all savers which gives ageneral api for any db we want to add
-    to our thoughts in the future"""
+    """General Saver is a layer above all savers which gives ageneral api for any db we want to add in the future
+       Please if you add a new DB make sure it has all the functions below!"""
 
     def __init__( self, db_url):
         pass

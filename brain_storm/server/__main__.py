@@ -20,5 +20,6 @@ Starts running the server on the host and port given as input
     except Exception as e:
         print(f'Got server error: {e}')
 
+
 if __name__ == '__main__':
     main()
