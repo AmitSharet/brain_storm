@@ -3,7 +3,7 @@ FROM brain_storm-base:latest
 #RUN mkdir api
 #ADD . /api
 
-#EXPOSE 5000
+EXPOSE 5000
 
 CMD   cd /usr/src/brain_storm   \
  && python -m brain_storm.api run-server -h 0.0.0.0  -d mongodb://0.0.0.0:27017

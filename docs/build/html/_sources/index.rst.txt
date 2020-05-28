@@ -3,14 +3,21 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to breain_storm's documentation!
+Welcome to brain_storm's documentation!
 ========================================
 
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
 
+   client
+   server
+   parsers
+   saver
    api
+   cli
+   gui
+
 
 
 Indices and tables

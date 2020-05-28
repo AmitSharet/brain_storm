@@ -1,5 +1,6 @@
 FROM brain_storm-base:latest
 
+EXPOSE 8000
 
 CMD  cd /usr/src/brain_storm   \
 &&ls brain_storm \

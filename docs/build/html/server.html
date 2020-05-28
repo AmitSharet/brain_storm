@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>api &#8212; brain_storm 1.0 documentation</title>
+    <title>server &#8212; brain_storm 1.0 documentation</title>
     <link rel="stylesheet" href="_static/nature.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
@@ -14,8 +14,8 @@
     <script type="text/javascript" src="_static/language_data.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="cli" href="cli.html" />
-    <link rel="prev" title="saver" href="saver.html" /> 
+    <link rel="next" title="parsers" href="parsers.html" />
+    <link rel="prev" title="client" href="client.html" /> 
   </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
@@ -24,10 +24,10 @@
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="cli.html" title="cli"
+          <a href="parsers.html" title="parsers"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="saver.html" title="saver"
+          <a href="client.html" title="client"
              accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="index.html">brain_storm 1.0 documentation</a> &#187;</li> 
       </ul>
@@ -38,8 +38,25 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="api">
-<h1>api<a class="headerlink" href="#api" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="server">
+<h1>server<a class="headerlink" href="#server" title="Permalink to this headline">¶</a></h1>
+<p>The server is available as brain_storm.server and
+<strong>expose the following API:</strong></p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">brain_storm.server</span> <span class="kn">import</span> <span class="n">run_server</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">print_message</span><span class="p">(</span><span class="n">message</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">run_server</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s1">&#39;127.0.0.1&#39;</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">8000</span><span class="p">,</span> <span class="n">publish</span><span class="o">=</span><span class="n">print_message</span><span class="p">)</span>
+<span class="go">… # listen on host:port and pass received messages to publish</span>
+</pre></div>
+</div>
+<p><strong>And the following CLI:</strong></p>
+<dl class="simple">
+<dt>$ python -m cortex.server run-server </dt><dd><p>-h/–host ‘127.0.0.1’          -p/–port 8000                 ‘rabbitmq://127.0.0.1:5672/’</p>
+</dd>
+</dl>
+<p>Note that the API lets callers pass any publishing function, while the CLI only lets them pass a URL to a message queue, to which the server then connects and publishes the data.</p>
+<p>The server’s job is:
+to accept connection, receive the uploaded samples and publish them to its message queue.</p>
 <blockquote>
 <div><dl class="simple">
 <dt>toctree::</dt><dd><dl class="field-list simple">
@@ -59,15 +76,15 @@
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
   <h4>Previous topic</h4>
-  <p class="topless"><a href="saver.html"
-                        title="previous chapter">saver</a></p>
+  <p class="topless"><a href="client.html"
+                        title="previous chapter">client</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="cli.html"
-                        title="next chapter">cli</a></p>
+  <p class="topless"><a href="parsers.html"
+                        title="next chapter">parsers</a></p>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
-      <li><a href="_sources/api.rst.txt"
+      <li><a href="_sources/server.rst.txt"
             rel="nofollow">Show Source</a></li>
     </ul>
    </div>
@@ -92,10 +109,10 @@
           <a href="genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="cli.html" title="cli"
+          <a href="parsers.html" title="parsers"
              >next</a> |</li>
         <li class="right" >
-          <a href="saver.html" title="saver"
+          <a href="client.html" title="client"
              >previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="index.html">brain_storm 1.0 documentation</a> &#187;</li> 
       </ul>

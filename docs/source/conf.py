@@ -17,7 +17,7 @@
 
 # -- Project information -----------------------------------------------------
 
-project = 'breain_storm'
+project = 'brain_storm'
 copyright = '2020, Amit Sharet'
 author = 'Amit Sharet'
 
