@@ -5,7 +5,8 @@
 
 Welcome to brain_storm's documentation!
 ========================================
-
+Hello, welcome to my project which lets you upload thoughts, publish and parse them.
+and later you can visualize the thoughts in a nice gui.
 .. toctree::
    :maxdepth: 2
    :caption: Contents:

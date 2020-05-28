@@ -1,5 +1,4 @@
 [![Build Status](https://travis-ci.org/AmitSharet/brain_storm.svg?branch=master)](https://travis-ci.org/AmitSharet/brain_storm)
-[![codecov](https://codecov.io/gh/AmitSharet/brain_storm/branch/master/graph/badge.svg)](https://codecov.io/gh/AmitSharet/brain_storm)
 
 # Welcome to BrainStorm!
 
