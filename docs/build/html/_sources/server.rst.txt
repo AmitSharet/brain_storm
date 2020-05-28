@@ -1,4 +1,4 @@
-server
+Server
 *******
 
 The server is available as brain_storm.server and

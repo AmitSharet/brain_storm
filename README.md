@@ -42,4 +42,6 @@ Simply run:
 
 ## Full documentation
 
-You can find full documentation of my project here (when it's ready):
+You can find full documentation of my project here:
+
+https://brain-storm.readthedocs.io/en/latest/

@@ -1,4 +1,4 @@
-cli - Command Line Interface
+CLI - Command Line Interface
 *****************************
 
 The CLI implements the following commands to get data from the database:

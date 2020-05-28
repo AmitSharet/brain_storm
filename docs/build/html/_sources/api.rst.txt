@@ -1,4 +1,4 @@
-api
+API
 ****
 
 The API should be available as brain_storm.api and **expose the following API:**
