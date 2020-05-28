@@ -40,6 +40,57 @@
             
   <div class="section" id="api">
 <h1>api<a class="headerlink" href="#api" title="Permalink to this headline">¶</a></h1>
+<p>The API should be available as brain_storm.api and <strong>expose the following API:</strong></p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">cortex.api</span> <span class="kn">import</span> <span class="n">run_api_server</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">run_api_server</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">host</span> <span class="o">=</span> <span class="s1">&#39;127.0.0.1&#39;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">port</span> <span class="o">=</span> <span class="mi">5000</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">database_url</span> <span class="o">=</span> <span class="s1">&#39;postgresql://127.0.0.1:5432&#39;</span><span class="p">,</span>
+<span class="gp">... </span><span class="p">)</span>
+<span class="go">… # listen on host:port and serve data from database_url</span>
+</pre></div>
+</div>
+<p><strong>And the following CLI:</strong></p>
+<dl class="simple">
+<dt>$ python -m cortex.api run-server </dt><dd><p>-h/–host ‘127.0.0.1’       -p/–port 5000              -d/–database ‘postgresql://127.0.0.1:5432’</p>
+</dd>
+</dl>
+<p>The API server supports the following RESTful API endpoints :</p>
+<p>GET /users
+Returns the list of all the supported users, including their IDs and names only.</p>
+<p>GET /users/user-id
+Returns the specified user’s details: ID, name, birthday and gender.</p>
+<p>GET /users/user-id/snapshots
+Returns the list of the specified user’s snapshot IDs and datetimes only.|</p>
+<p>GET /users/user-id/snapshots/snapshot-id
+Returns the specified snapshot’s details: ID, datetime, and the available results’ names only (e.g. pose).</p>
+<p>GET /users/user-id/snapshots/snapshot-id/result-name</p>
+<p>example:
+GET /users/user-id/snapshots/snapshot-id/color-image/colorPath</p>
+<div class="section" id="how-to-add-a-new-database">
+<h2>How to add a new Database:<a class="headerlink" href="#how-to-add-a-new-database" title="Permalink to this headline">¶</a></h2>
+<p>The saver currently uses mongodb database but supports adding new databases and saving data to them:
+To add a new database please follow these steps:</p>
+<ol class="arabic simple">
+<li><p>Create a file with the name of your database scheme and ‘_.py’ in the end.</p></li>
+</ol>
+<p>2. In the file you created in step 1 add a single class with a name of your choice, in order for things to work the
+<strong>class should implement these functions:</strong></p>
+<blockquote>
+<div><p>def __init__(self, host: str, port: int):</p>
+<p>def get_users(self): Gets users list from the database</p>
+<p>def get_one_user(self, user_id): Gets one user from the database by user_id</p>
+<p>def get_snapshots(self, user_id): Gets a list of the snapshots of a user by user_id</p>
+<p>def get_one_snapshot(self, user_id, snapshot_id): Gets one snapshot by user_id and snapshot_id</p>
+<p>def get_result(self, user_id, snapshot_id, result_name): Gets a result of a snapshot from the database by user_id, snapshot_id, result_name.</p>
+</div></blockquote>
+<p><strong>And for the saver to work please implement also:</strong></p>
+<blockquote>
+<div><p>def save(self, data, field): Saves dataof the field</p>
+</div></blockquote>
+<ol class="arabic simple" start="3">
+<li><p>Put the new file you created in brain_storm/databases directory.</p></li>
+</ol>
 <blockquote>
 <div><dl class="simple">
 <dt>toctree::</dt><dd><dl class="field-list simple">
@@ -51,6 +102,7 @@
 </dl>
 </div></blockquote>
 </div>
+</div>
 
 
           </div>
@@ -58,6 +110,14 @@
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">api</a><ul>
+<li><a class="reference internal" href="#how-to-add-a-new-database">How to add a new Database:</a></li>
+</ul>
+</li>
+</ul>
+
   <h4>Previous topic</h4>
   <p class="topless"><a href="saver.html"
                         title="previous chapter">saver</a></p>
