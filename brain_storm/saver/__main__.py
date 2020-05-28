@@ -3,7 +3,6 @@ from . import Saver
 from furl import furl
 
 
-
 @click.group()
 def main():
     pass
@@ -26,7 +25,7 @@ save - Saves data
 @main.command('run-saver')
 @click.argument('database')
 @click.argument('mq')
-def run_service(database, mq): ##TODO: VERY IMPORTANT - CHANGE TO BE LIKE THE SPEC!!!!
+def run_saver(database, mq):
     """
     Receives urls (+scheme) to a database and a message queue and runs the saver service,
      which listens to the queue and saves message to the database

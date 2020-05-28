@@ -6,6 +6,7 @@ from . import upload_sample
 def main():
     pass
 
+
 @main.command('upload-sample')
 @click.option('-h', '--host', default= 'localhost', help="host of the srver")
 @click.option('-p', '--port', default= 8000, help="port of the server")

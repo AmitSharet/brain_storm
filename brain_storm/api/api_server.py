@@ -37,9 +37,7 @@ def run_api_server(host='127.0.0.1', port=5000, database_url='mongodb://0.0.0.0:
     @cross_origin()
     @app.route('/users/<int:user_id>/snapshots/<snapshot_id>/<result_name>', methods=['GET'])
     def get_result(user_id, snapshot_id, result_name):
-        return db.get_result(user_id,snapshot_id,result_name)
-
-
+        return db.get_result(user_id, snapshot_id, result_name)
 
     app.run(host=host, port=port, threaded=True)
 

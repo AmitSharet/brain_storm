@@ -45,7 +45,6 @@ Uses protobuf protocol
         except:
             raise
 
-
     def __iter__(self):
         return self
 

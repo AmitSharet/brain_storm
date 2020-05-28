@@ -30,13 +30,13 @@ def get_parser_by_name(parser_name : str): #TODO : Add edge cases
         print(parser_name)
         print(file[:-3])
         if file.startswith("_") or not file.endswith(".py"):
-            continue #next loop
+            continue
         if file[:-3] == parser_name:
             module_name = pathlib.Path(file).stem
             print("module name  " + module_name)
             module = importlib.import_module('.parser_fields.' + module_name, package=__package__)
             print(module)
-            return (getattr(module, module_name))
+            return getattr(module, module_name)
 
     raise NotImplementedError("no parser found with this name")
 

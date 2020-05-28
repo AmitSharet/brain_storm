@@ -6,7 +6,7 @@ class MongoDB:
     """
 Database of the mongodb
      """
-    name = 'MongoDB'
+
     def __init__(self, host: str, port: int):
         self.host = host
         self.port = port
