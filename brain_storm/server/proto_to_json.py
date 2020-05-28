@@ -46,4 +46,4 @@ class ProtobufToJson:
 
         user_dict, snap_dict = self._user_to_dict(user=user), self._snap_to_dict(snap=snap, user=user)
 
-        return json.dumps({'user': user_dict, 'snap': snap_dict})
+        return json.dumps({'user': user_dict, 'snap': snap_dict}), json.dumps(user_dict)

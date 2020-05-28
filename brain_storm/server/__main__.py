@@ -15,8 +15,10 @@ def run(host,port,message_queue):
     """
 Starts running the server on the host and port given as input
     """
-    run_server(host = host, port = port, mq_address = message_queue)
-
+    try:
+        run_server(host = host, port = port, mq_address = message_queue)
+    except Exception as e:
+        print(f'Got server error: {e}')
 
 if __name__ == '__main__':
     main()

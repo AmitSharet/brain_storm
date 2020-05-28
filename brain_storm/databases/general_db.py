@@ -12,7 +12,7 @@ class GeneralDB:
     def __init__( self, db_url):
         pass
         self.db_url = furl(db_url)
-        url_scheme=self.db_url.scheme
+        url_scheme = self.db_url.scheme
         db_class = self.get_db_by_name(url_scheme)
         try:
             self.db=db_class(self.db_url.host, self.db_url.port)
@@ -25,8 +25,6 @@ class GeneralDB:
         root= pathlib.Path(file_path)
         for file in os.listdir(file_path):
             file =str(file)
-            print(db_name)
-            print(file[:-4])
             if file.startswith("_") or not file.endswith(".py"):
                 continue
             if file[:-4] == db_name and file[-4] == '_':
@@ -34,8 +32,6 @@ class GeneralDB:
                 module = importlib.import_module(f'.{pathlib.Path(file).stem}',package=package).__dict__
                 for item in module.values():
                     if inspect.isclass(item) and 'save' in item.__dict__:
-                        print( item)
-                        print(module)
                         return item
         raise NotImplementedError("No parser found with this name")
 

@@ -15,8 +15,10 @@ def run_api(host, port, database):
     """
     BLAH BLAH API server
     """
-    run_api_server(host=host, port=port, database_url=database)
-
+    try:
+        run_api_server(host=host, port=port, database_url=database)
+    except Exception as e:
+        print(f'Got spi error: {e}')
 
 if __name__ == '__main__':
     main()

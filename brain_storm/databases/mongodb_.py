@@ -1,14 +1,10 @@
 from pymongo import MongoClient, errors
-from flask import Flask
-from flask import request
-import click
-from flask_cors import CORS, cross_origin
 from bson import json_util
 import json
 
 class MongoDB:
     """
-  CLASS DESCRIPTION
+Database of the mongodb
      """
     name = 'MongoDB'
     def __init__(self, host: str, port: int):
@@ -27,7 +23,7 @@ class MongoDB:
 
     def insert_user(self, data):
         print(data)
-        self.users.update_one({'_id': data['user']['userId']}, {'$set': data['user']}, upsert=True)
+        self.users.update_one({'_id': data['userId']}, {'$set': data}, upsert=True)
 
     def insert_snap(self, data):
         snapshot_id = data['datetime']
@@ -35,7 +31,7 @@ class MongoDB:
                                   [{'$set': data}], upsert=True)  # create or update
 
     def save(self, data, field):
-        """BLAH BLAH BLAH"""
+        """Saves data in the Mongo DB server"""
         print(field)
         if field == 'user':
             self.insert_user(data)

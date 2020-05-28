@@ -1,10 +1,5 @@
 from flask import Flask
-from flask import request
-import click
-import pymongo
 from flask_cors import CORS, cross_origin
-from bson import json_util
-import json
 from ..databases import GeneralDB
 
 
