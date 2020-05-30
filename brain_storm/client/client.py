@@ -1,6 +1,7 @@
 from .reader import Reader
 import requests
 
+
 def upload_sample(path: str, host='127.0.0.1', port=8000):
     """ upload_sample simply reads the sample from the path and uploads to server  """
     file_reader = Reader(path)
@@ -13,7 +14,7 @@ def upload_sample(path: str, host='127.0.0.1', port=8000):
     for binary_snapshot in file_reader:
         Reader.read_protobuf_snapshot(binary_snapshot)
 
-        user_len = int.to_bytes(len(user), UINT_32_LEN, byteorder = 'little')
+        user_len = int.to_bytes(len(user), UINT_32_LEN, byteorder='little')
         message = user_len + user + binary_snapshot
 
         try:

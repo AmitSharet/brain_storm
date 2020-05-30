@@ -83,7 +83,7 @@ def get_result(host, port, save, user_id, snapshot_id, result):
         result_data = requests.get(f'http://{host}:{port}/users/{user_id}/snapshots/{snapshot_id}/{result}')
         if save:
             with open(save, 'w') as file_saver:
-                file_saver.write(result_data.content)
+                file_saver.write(str(result_data.content))
         else:
             print(result_data.content)
     except Exception as e:

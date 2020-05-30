@@ -9,7 +9,7 @@ class Saver:
 
     def run_savers(self, mq_host):
 
-        connection = pika.BlockingConnection(pika.ConnectionParameters(mq_host))
+        connection = pika.BlockingConnection(pika.ConnectionParameters(mq_host, retry_delay=10, connection_attempts=20))
 
         channel = connection.channel()
 

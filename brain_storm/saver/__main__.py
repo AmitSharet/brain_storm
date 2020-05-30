@@ -16,10 +16,13 @@ def save(field, path, database):
     """
 save - Saves data
     """
-    saver = Saver(database)
-    with open(path, 'r') as f:
-        data = f.read()
-        saver.db.save(data, field)
+    try:
+        saver = Saver(database)
+        with open(path, 'r') as f:
+            data = f.read()
+            saver.db.save(data, field)
+    except Exception as e:
+        print(f'Saver Error : {e}')
 
 
 @main.command('run-saver')
@@ -30,10 +33,13 @@ def run_saver(database, mq):
     Receives urls (+scheme) to a database and a message queue and runs the saver service,
      which listens to the queue and saves message to the database
     """
-    saver = Saver(database)
-    mq = furl(mq)
-    mq_host = str(mq.host)
-    saver.run_savers(mq_host)
+    try:
+        saver = Saver(database)
+        mq = furl(mq)
+        mq_host = str(mq.host)
+        saver.run_savers(mq_host)
+    except Exception as e:
+        print(f'Saver Error : {e}')
 
 
 if __name__ == '__main__':

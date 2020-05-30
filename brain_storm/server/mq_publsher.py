@@ -8,13 +8,13 @@ def _simple_publish(user, snapshot, mq_host, mq_port):
     """  Publishes to the parsers and saver the user and snapshot data from the input """
 
     connection = pika.BlockingConnection(
-        pika.ConnectionParameters( host=mq_host))
+        pika.ConnectionParameters(host=mq_host))
     channel = connection.channel()
     channel.exchange_declare(exchange='brain_storm', exchange_type='topic')
 
     current_directory = os.path.abspath('..')
     snapshots_directory_path = f'{current_directory}/Snapshots'
-    os.makedirs( snapshots_directory_path, exist_ok = True)
+    os.makedirs( snapshots_directory_path, exist_ok=True)
     proto_to_json = ProtobufToJson(snapshots_directory_path)
 
     body_message, user_message = proto_to_json.user_snap_to_json(user, snapshot)

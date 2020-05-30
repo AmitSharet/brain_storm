@@ -21,13 +21,13 @@ Database of the mongodb
         self.snapshots = self.db["snapshots"]
 
     def insert_user(self, data):
-        print(data)
-        self.users.update_one({'_id': data['userId']}, {'$set': data}, upsert=True)
+        if data:
+            self.users.update_one({'_id': data['userId']}, {'$set': data}, upsert=True)
 
     def insert_snap(self, data):
         snapshot_id = data['datetime']
-        self.snapshots.update_one({'_id': snapshot_id},
-                                  [{'$set': data}], upsert=True)  # create or update
+        if data:
+            self.snapshots.update_one({'_id': snapshot_id}, [{'$set': data}], upsert=True)
 
     def save(self, data, field):
         """Saves data in the Mongo DB server"""
