@@ -37,7 +37,7 @@ Run installation script
 
 Simply run:
 
-    `docker-compose up -d
+    ./run-pipeline.sh
 
 ## Full documentation
 

@@ -10,6 +10,7 @@ Welcome to brain_storm's documentation!
    :maxdepth: 2
    :caption: Contents:
 
+   welcome
    client
    server
    parsers
@@ -17,6 +18,7 @@ Welcome to brain_storm's documentation!
    api
    cli
    gui
+   in_case_things_dont_work
 
 
 

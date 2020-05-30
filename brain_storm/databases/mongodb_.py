@@ -41,8 +41,6 @@ Database of the mongodb
 
     def get_users(self):
         dict_users = {}
-        print(list(self.db.users.find(dict_users, {'_id': 0})))
-        print(type(list(self.db.users.find(dict_users, {'_id': 0}))))
         return json.dumps(list((self.db.users.find(dict_users, {'_id': 0}))), default=json_util.default)
 
     def get_one_user(self, user_id):
@@ -54,14 +52,12 @@ Database of the mongodb
     def get_snapshots(self, user_id):
         if not self.db.users.find_one({'userId': str(user_id)}):
             return 'User Not Found', 404
-        print((list(self.db.snapshots.find({'userId': user_id}, {'_id': 0}))))
         return json.dumps(list(self.db.snapshots.find({'userId': str(user_id)}, {'_id': 0})), default=json_util.default), 200
 
     def get_one_snapshot(self, user_id, snapshot_id):
         if not self.db.users.find_one({'userId': str(user_id)}):
             return 'User Not Found', 404
         snapshot = self.db.snapshots.find_one({'userId': str(user_id) , 'datetime': snapshot_id })
-        print(snapshot)
         if not snapshot:
             return 'Snapshot Not Found For This User', 404
         return json.dumps(snapshot, default=json_util.default), 200
