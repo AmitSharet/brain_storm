@@ -27,8 +27,6 @@ def run_parser_from_mq(mq_host, parser_name, parser):
 def get_parser_by_name(parser_name : str):
     dir_path = os.path.dirname(os.path.realpath(__file__))
     for file in os.listdir(f'{dir_path}/parser_fields'):
-        print(parser_name)
-        print(file[:-3])
         if file.startswith("_") or not file.endswith(".py"):
             continue
         if file[:-3] == parser_name:
