@@ -96,5 +96,3 @@ To add a new database please follow these steps:
 
 3. Put the new file you created in brain_storm/databases directory.
 
-  toctree::
-   :maxdepth: 2

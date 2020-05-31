@@ -65,6 +65,3 @@ Which accepts a parser name and some raw data, as consumed from the message queu
 
 
 
-
-  toctree::
-   :maxdepth: 2

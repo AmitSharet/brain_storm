@@ -23,5 +23,3 @@ $ python -m cortex.cli get-result 1 2 'pose'
 
 
 
-  toctree::
-   :maxdepth: 2
