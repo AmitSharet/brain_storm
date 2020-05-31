@@ -7,9 +7,9 @@ class Saver:
     def __init__(self, database):
         self.db = GeneralDB(database)
 
-    def run_savers(self, mq_host):
+    def run_savers(self, mq_host, mq_port):
 
-        connection = pika.BlockingConnection(pika.ConnectionParameters(mq_host, retry_delay=10, connection_attempts=20))
+        connection = pika.BlockingConnection(pika.ConnectionParameters(host=mq_host, port=mq_port, retry_delay=10, connection_attempts=20))
 
         channel = connection.channel()
 

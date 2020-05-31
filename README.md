@@ -26,7 +26,7 @@ Run installation script
 
     $ ./scripts/install.sh
     ...
-    $ source ./env/bin/activate
+    $ source .env/bin/activate
 
  Check everything is working as expected:
 

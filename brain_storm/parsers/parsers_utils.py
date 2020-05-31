@@ -5,8 +5,8 @@ import pathlib
 import os
 
 
-def run_parser_from_mq(mq_host, parser_name, parser):
-    connection = pika.BlockingConnection(pika.ConnectionParameters(mq_host))
+def run_parser_from_mq(mq_host, mq_port, parser_name, parser):
+    connection = pika.BlockingConnection(pika.ConnectionParameters(host=mq_host, port=mq_port))
     channel = connection.channel()
     channel.exchange_declare(exchange='brain_storm', exchange_type='topic')
     channel.queue_declare(parser_name)
@@ -21,7 +21,6 @@ def run_parser_from_mq(mq_host, parser_name, parser):
     channel.basic_consume( queue=parser_name, on_message_callback=callback, auto_ack=True)
     print(f'{parser_name} is listening to queue now.')
     channel.start_consuming()
-
 
 
 def get_parser_by_name(parser_name : str):

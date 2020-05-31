@@ -8,7 +8,7 @@ def _simple_publish(user, snapshot, mq_host, mq_port):
     """  Publishes to the parsers and saver the user and snapshot data from the input """
 
     connection = pika.BlockingConnection(
-        pika.ConnectionParameters(host=mq_host))
+        pika.ConnectionParameters(host=mq_host, port=mq_port))
     channel = connection.channel()
     channel.exchange_declare(exchange='brain_storm', exchange_type='topic')
 
