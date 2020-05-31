@@ -16,6 +16,7 @@ def upload_sample(path: str, host='127.0.0.1', port=8000):
 
         user_len = int.to_bytes(len(user), UINT_32_LEN, byteorder='little')
         message = user_len + user + binary_snapshot
+        print()
 
         try:
             requests.post(url=_url, data=message)

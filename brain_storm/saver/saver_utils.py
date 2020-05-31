@@ -9,7 +9,8 @@ class Saver:
 
     def run_savers(self, mq_host, mq_port):
 
-        connection = pika.BlockingConnection(pika.ConnectionParameters(host=mq_host, port=mq_port, retry_delay=10, connection_attempts=20))
+        connection = pika.BlockingConnection(pika.ConnectionParameters(host=mq_host, port=mq_port, retry_delay=10,
+                                                                       connection_attempts=20))
 
         channel = connection.channel()
 
@@ -17,16 +18,14 @@ class Saver:
 
         channel.queue_declare('saver')
 
-        channel.queue_bind(
-            exchange='brain_storm', queue='saver', routing_key='save.*')
+        channel.queue_bind(exchange='brain_storm', queue='saver', routing_key='save.*')
 
         def callback(ch, method, properties, body):
             field: str = method.routing_key.split('.').pop()
             data = json.loads(body)
             self.db.save(data=data, field=field)
 
-        channel.basic_consume(
-            queue='saver', on_message_callback=callback, auto_ack=True)
+        channel.basic_consume(queue='saver', on_message_callback=callback, auto_ack=True)
 
         print('Saver started listening to queue')
 
