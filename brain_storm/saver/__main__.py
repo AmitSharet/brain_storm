@@ -26,7 +26,7 @@ def save(field, path, database):
 def run_saver(database, mq):
 
     saver = Saver(database)
-    if saver is None:
+    if not saver:
         print("Bad input for saver")
         return -1
     mq = furl(mq)

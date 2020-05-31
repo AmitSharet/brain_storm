@@ -1,8 +1,10 @@
 import gzip
 from .brain_storm_pb2 import User, Snapshot
 
-UINT_LEN_IN_BYTES=4
-class Reader():
+UINT_LEN = 4
+
+
+class Reader:
     """
 Class Reader - reads different types of files .mind and .mind.gz filess
 Uses protobuf protocol
@@ -25,7 +27,7 @@ Uses protobuf protocol
             return -1
 
     def read_user(self):
-        user_size = int.from_bytes(self.file.read(UINT_LEN_IN_BYTES),byteorder = 'little')
+        user_size = int.from_bytes(self.file.read(UINT_LEN), byteorder='little')
         return self.file.read(user_size)
 
     def get_user_binary(self):
@@ -33,23 +35,17 @@ Uses protobuf protocol
 
     @staticmethod
     def read_protobuf_user(binary_user):
-        try:
-            User.FromString(binary_user)
-        except:
-            raise
+        User.FromString(binary_user)
 
     @staticmethod
     def read_protobuf_snapshot(binary_snapshot):
-        try:
-            Snapshot.FromString(binary_snapshot)
-        except:
-            raise
+        Snapshot.FromString(binary_snapshot)
 
     def __iter__(self):
         return self
 
     def __next__(self):
-        length_of_snapshot = self.file.read(UINT_LEN_IN_BYTES)
+        length_of_snapshot = self.file.read(UINT_LEN)
         if length_of_snapshot:
             length_of_snapshot = int.from_bytes(length_of_snapshot, byteorder = 'little')
             return self.file.read(length_of_snapshot)

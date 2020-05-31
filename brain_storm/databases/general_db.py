@@ -10,7 +10,6 @@ class GeneralDB:
        Please if you add a new DB make sure it has all the functions below!"""
 
     def __init__( self, db_url):
-        pass
         self.db_url = furl(db_url)
         url_scheme = self.db_url.scheme
         db_class = self.get_db_by_name(url_scheme)
@@ -22,7 +21,7 @@ class GeneralDB:
 
     def get_db_by_name(self, db_name):
         file_path = os.path.dirname(os.path.realpath(__file__))
-        root= pathlib.Path(file_path)
+        root = pathlib.Path(file_path)
         for file in os.listdir(file_path):
             file =str(file)
             if file.startswith("_") or not file.endswith(".py"):

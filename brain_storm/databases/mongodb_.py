@@ -46,30 +46,30 @@ Database of the mongodb
     def get_one_user(self, user_id):
         user = self.db.users.find_one({'userId': str(user_id)}, {'_id': 0})
         if not user:
-            return 'User Not Found', 404
+            return 'User not found', 404
         return json.dumps(user, default=json_util.default), 200
 
     def get_snapshots(self, user_id):
         if not self.db.users.find_one({'userId': str(user_id)}):
-            return 'User Not Found', 404
+            return 'User not found', 404
         return json.dumps(list(self.db.snapshots.find({'userId': str(user_id)}, {'_id': 0})), default=json_util.default), 200
 
     def get_one_snapshot(self, user_id, snapshot_id):
         if not self.db.users.find_one({'userId': str(user_id)}):
-            return 'User Not Found', 404
+            return 'User not found', 404
         snapshot = self.db.snapshots.find_one({'userId': str(user_id) , 'datetime': snapshot_id })
         if not snapshot:
-            return 'Snapshot Not Found For This User', 404
+            return 'Snapshot not found for this id', 404
         return json.dumps(snapshot, default=json_util.default), 200
 
     def get_result(self, user_id, snapshot_id, result_name):
         if not self.db.users.find_one({'userId': str(user_id)}):
-            return 'User Not Found', 404
+            return 'User not found', 404
         snapshot = self.db.snapshots.find_one({'userId': str(user_id), 'datetime': snapshot_id})
         if not snapshot:
-            return 'Snapshot Not Found For This User', 404
+            return 'Snapshot not found for this id', 404
         if result_name not in snapshot:
-            return 'Result Is not Available', 404
+            return 'Result not available', 404
         return json.dumps(snapshot[result_name], default=json_util.default), 200
 
 
