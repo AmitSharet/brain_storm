@@ -13,7 +13,9 @@ def main():
 @click.argument('field')
 @click.argument('path')
 def save(field, path, database):
-
+    """
+    Saves data from the path to the input field in the database input
+    """
     saver = Saver(database)
     with open(path, 'r') as f:
         data = f.read()
@@ -24,7 +26,9 @@ def save(field, path, database):
 @click.argument('database')
 @click.argument('mq')
 def run_saver(database, mq):
-
+    """
+Listens to the message queue and saves the data recieved from there in the database.
+     """
     saver = Saver(database)
     if not saver:
         print("Bad input for saver")
