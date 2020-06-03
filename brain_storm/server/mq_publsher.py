@@ -1,5 +1,4 @@
 from .proto_to_json import ProtobufToJson
-import logging
 import os
 import pika
 

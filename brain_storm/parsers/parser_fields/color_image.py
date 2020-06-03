@@ -1,7 +1,6 @@
 import json
 import PIL
 import numpy as np
-import logging
 
 
 def color_image(data):

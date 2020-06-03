@@ -1,5 +1,5 @@
 import gzip
-from .brain_storm_pb2 import User, Snapshot
+from ..brain_storm_pb2 import User, Snapshot
 
 UINT_LEN = 4
 

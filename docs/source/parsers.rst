@@ -11,17 +11,18 @@ Collects the translation and the rotation of the user's head at a given timestam
 
 **Color Image**
 Collects the color image of what the user was seeing at a given timestamp, and publishes the result to a dedicated topic.
-Note: the data itself should be stored to disk, and only the metadata published.
+
 
 **Depth Image**
 Collects the depth image of what the user was seeing at a given timestamp, and publishes the result to a dedicated topic.
 A depth image is a width × height array of floats, where each float represents how far the nearest surface from the user was, in meters. So, if the user was looking at a chair, the depth of its outline would be its proximity to her (for example, 0.5 for half a meter), and the wall behind it would be farther (for example, 1.0 for one meter).
 The best (2D) way to represent it is using matplotlib's heatmap.
-Note: the data itself should be stored to disk, and only the metadata published.
 
 **Feelings**
 Collects the feelings the user was experiencing at any timestamp, and publishes the result to a dedicated topic.
 
+
+**NOTE:** The data of Color Image and Depth Image is saved in the Path given in the result
 
 
 How to add a new parser:

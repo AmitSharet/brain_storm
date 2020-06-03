@@ -1,5 +1,5 @@
 from flask import Flask, make_response, request
-from .brain_storm_pb2 import User, Snapshot
+from ..brain_storm_pb2 import User, Snapshot
 from .mq_publsher import _simple_publish
 from furl import furl
 

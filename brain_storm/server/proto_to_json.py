@@ -1,8 +1,7 @@
 import os
-from .brain_storm_pb2 import User, Snapshot
+from ..brain_storm_pb2 import User, Snapshot
 from google.protobuf.json_format import MessageToDict
 import json
-import logging
 
 
 class ProtobufToJson:
@@ -30,7 +29,6 @@ class ProtobufToJson:
             for ele in snap.depth_image.data:
                 save_file.write(repr(ele) + ',')
                 i += 1
-            logging.warning('wrote to depth '+str(i))
 
         # data is transferred from files, not dictionary
         del snap_dict['colorImage']['data']
