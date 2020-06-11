@@ -20,6 +20,9 @@ Database of the mongodb
         self.users = self.db["users"]
         self.snapshots = self.db["snapshots"]
 
+    def __repr__(self):
+        return f'Database name : MongoDB'
+
     def insert_user(self, data):
         if data:
             self.users.update_one({'_id': data['userId']}, {'$set': data}, upsert=True)

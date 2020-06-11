@@ -35,7 +35,7 @@ class GeneralDB:
         raise NotImplementedError("No parser found with this name")
 
     def __repr__(self):
-        pass
+        return self.db.__rpr__()
 
     def save(self, data, field):
         self.db.save(data, field)
