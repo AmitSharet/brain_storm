@@ -53,6 +53,7 @@ Returns the list of the specified user's snapshot IDs and datetimes only.|
 GET /users/user-id/snapshots/snapshot-id
 Returns the specified snapshot's details: ID, datetime, and the available results' names only (e.g. pose).
 
+Note: Please notice the snapshot id is the timestamp of the snapshot!
 
 GET /users/user-id/snapshots/snapshot-id/result-name
 
@@ -95,5 +96,3 @@ To add a new database please follow these steps:
 
 3. Put the new file you created in brain_storm/databases directory.
 
-  toctree::
-   :maxdepth: 2

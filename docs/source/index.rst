@@ -19,7 +19,6 @@ Welcome to brain_storm's documentation!
    cli
    gui
    in_case_things_dont_work
-   for_dan
 
 
 Indices and tables

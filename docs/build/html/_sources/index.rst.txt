@@ -21,7 +21,6 @@ Welcome to brain_storm's documentation!
    in_case_things_dont_work
 
 
-
 Indices and tables
 ==================
 

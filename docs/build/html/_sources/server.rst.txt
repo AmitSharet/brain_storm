@@ -24,5 +24,3 @@ The server's job is:
 to accept connection, receive the uploaded samples and publish them to its message queue.
 
 
-  toctree::
-   :maxdepth: 2

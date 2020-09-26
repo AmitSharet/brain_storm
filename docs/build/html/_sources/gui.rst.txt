@@ -9,5 +9,4 @@ The gui reflects the api in a more convenient way and lets the user navigate thr
 2. $ npm start
 
 And you're good to go. You will be able to find the Gui in localhost:3000
-  toctree::
-   :maxdepth: 2
+

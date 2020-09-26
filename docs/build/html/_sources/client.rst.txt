@@ -20,6 +20,3 @@ The client is available as brain_storm.client, it helps us upload data about the
       -p/--port 8000                    \
       'snapshot.mind.gz
 
-
-  toctree::
-   :maxdepth: 2
